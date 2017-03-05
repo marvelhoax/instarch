@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# This script is made by Marvel Hoax <marvelhoax@gmail.com>
+# All contribution and suggestions are welcome
 
 from subprocess import *
 import time
