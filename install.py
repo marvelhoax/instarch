@@ -77,15 +77,13 @@ else:
 	generate_locale = call("locale-gen", shell=True)
 	set_locale = call("localectl set-local LANG=en_US.UTF-8", shell=True)
 
-<<<<<<< HEAD
 	# select timezone and set it permanent
 	tzselect = call("tzselect", shell=True)
 	set_timezone = call("timedatectl set-timezone 'Europe/Berlin'", shell=True)
-=======
-# set hardware clock and sync using ntp
-hwclock = call("hwclock --systohc --utc", shell=True)
-set_ntp = call("timedatectl set-ntp true", shell=True)
->>>>>>> 890b53999999a15145998c2277cf57a11f45e9a5
+	
+	# set hardware clock and sync using ntp
+	hwclock = call("hwclock --systohc --utc", shell=True)
+	set_ntp = call("timedatectl set-ntp true", shell=True)
 
 	# set hardware clock and sync using ntp
 	hwclock = call("hwclock --systohc --utc", shell=True)
@@ -109,23 +107,14 @@ set_ntp = call("timedatectl set-ntp true", shell=True)
 	# install video driver specific for your hardware
 	install_video_driver = call("pacman -S xf86-video-intel", shell=True)
 
-<<<<<<< HEAD
 	# install Xorg packages
 	xorg_packages = call("pacman -S xorg-server xorg-utils xorg-xinit xterm",shell=True)
-=======
-# fancy loading ^-^
-time.sleep(1)
-print "loading",
-for x in range(1,5):
-	print "\033[36m .\033[0m",
->>>>>>> 890b53999999a15145998c2277cf57a11f45e9a5
-
+	
 	# fancy loading ^-^
 	time.sleep(1)
 	print "loading",
 	for x in range(1,5):
 		print "\033[36m .\033[0m",
-
 
 	print ""
 
