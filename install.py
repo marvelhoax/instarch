@@ -104,6 +104,7 @@ xorg_packages = call("pacman -S xorg-server xorg-utils xorg-xinit xterm",shell=T
 print "loading",
 for x in range(1,5):
 	print "\033[36m .\033[0m",
+	time.delay(60)
 
 
 print ""
