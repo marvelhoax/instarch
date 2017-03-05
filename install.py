@@ -100,7 +100,7 @@ install_video_driver = call("pacman -S xf86-video-intel", shell=True)
 xorg_packages = call("pacman -S xorg-server xorg-utils xorg-xinit xterm",shell=True)
 
 # fancy loading ^-^
-time.delay(1)
+time.sleep(1)
 print "loading",
 for x in range(1,5):
 	print "\033[36m .\033[0m",
