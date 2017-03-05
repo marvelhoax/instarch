@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # This script is made by Marvel Hoax <marvelhoax@gmail.com>
 # All contribution and suggestions are welcome
 
@@ -78,7 +78,7 @@ set_timezone = call("timedatectl set-timezone 'Europe/Berlin'", shell=True)
 
 # set hardware clock and sync using ntp
 hwclock = call("hwclock --systohc --utc", shell=True)
-set_ntp = call("timedatectl set-ntp true" shell=True)
+set_ntp = call("timedatectl set-ntp true", shell=True)
 
 ################# BASIC SETTINGS OVER #################################
 
