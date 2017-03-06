@@ -31,7 +31,8 @@ chroot = call([
 	"grub-install --recheck /dev/sda",
 	"grub-mkconfig -o /boot/grub/grub.cfg",
 	"time.sleep(60)",
-	"print \"\033[40;1;31m Lets Configure Base Setting\033[0m\""], shell=True)
+	"print \"\033[40;1;31m Lets Configure Base Setting\033[0m\""
+	], shell=True)
 
 if chroot not 0:
 	print "Error in changing the root!"
