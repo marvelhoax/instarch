@@ -7,6 +7,8 @@ import time
 
 print "\033[1;32m---------W3lC0M3 T0 INST4RCH---------------\033[0m"
 
+time.sleep(5)
+
 # Create a single partition and mark it bootable
 create_partition = call("cfdisk /dev/sda", shell=True)
 
@@ -23,7 +25,13 @@ base_sys = call("pacstrap /mnt base base-devel", shell=True)
 gen_fstab = call("genfstab -U /mnt > /mnt/etc/fstab", shell=True)
 
 # chroot in to the new system
-chroot = call("arch-chroot /mnt", shell=True)
+chroot = call([
+	"arch-chroot /mnt",
+	"pacman -S grub os-prober",
+	"grub-install --recheck /dev/sda",
+	"grub-mkconfig -o /boot/grub/grub.cfg",
+	"time.sleep(60)",
+	"print \"\033[40;1;31m Lets Configure Base Setting\033[0m\""], shell=True)
 
 if chroot not 0:
 	print "Error in changing the root!"
