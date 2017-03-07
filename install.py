@@ -25,7 +25,7 @@ base_sys = call("pacstrap /mnt base base-devel", shell=True)
 gen_fstab = call("genfstab -U /mnt > /mnt/etc/fstab", shell=True)
 
 # chroot in to the new system
-export chroot = call([
+chroot = call([
 	"arch-chroot /mnt",
 	"pacman -S grub os-prober",
 	"grub-install --recheck /dev/sda",
@@ -37,9 +37,9 @@ export chroot = call([
 print ""
 
 # install and configure GRAND UNIFIED BOOTLOADER
-export download_grub = call("pacman -S grub os-prober", shell=True)
-grub_install  = call("grub-install --recheck /dev/sda", shell=True)
-grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
+#download_grub = call("pacman -S grub os-prober", shell=True)
+#grub_install  = call("grub-install --recheck /dev/sda", shell=True)
+#grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
 
 # sleep for few seconds.
 time.sleep(60)
