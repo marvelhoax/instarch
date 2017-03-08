@@ -40,9 +40,12 @@ print ""
 download_grub = call("pacman -S grub os-prober", shell=True)
 grub_install  = call("grub-install --recheck /dev/sda", shell=True)
 grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
+#download_grub = call("pacman -S grub os-prober", shell=True)
+#grub_install  = call("grub-install --recheck /dev/sda", shell=True)
+#grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
 
 # sleep for few seconds.
-time.sleep(60)
+time.sleep(2)
 #####################################################################
 #                       BASE SETTING                                #
 #####################################################################
