@@ -27,7 +27,7 @@ def gen_fstab():
 	print "Genfstab command executed successfully"
 	print "Its time to configure grub, This shit is not working and Allah is not helping me to figure out this problem"
 	answer = raw_input("Do you want to configure grub?")
-	if answer == 'y' || answer == 'Y':
+	if answer == 'y' and answer == 'Y':
 		configure_grub
 	else:
 		print "You are looser!Fck this bitch..."
