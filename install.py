@@ -32,6 +32,8 @@ def gen_fstab():
 	else:
 		print "You are looser!Fck this bitch..."
 
+gen_fstab
+
 # chroot in to the new system
 def configure_grub():
 	call("pacman -S grub", shell=True)
