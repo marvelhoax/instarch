@@ -21,25 +21,27 @@ mount = call("mount /dev/sda1 /mnt", shell=True)
 # install the base system
 base_sys = call("pacstrap /mnt base base-devel", shell=True)
 
-# generate fstab
-gen_fstab = call("genfstab -U /mnt > /mnt/etc/fstab", shell=True)
+def gen_fstab():
+	# generate fstab
+	gen_fstab = call("genfstab -U /mnt > /mnt/etc/fstab", shell=True)
+	print "Genfstab command executed successfully"
+	print "Its time to configure grub, This shit is not working and Allah is not helping me to figure out this problem"
+	answer = raw_input("Do you want to configure grub?")
+	if answer == 'y' || answer == 'Y':
+		configure_grub
+	else:
+		print "You are looser!Fck this bitch..."
 
 # chroot in to the new system
-chroot = call([
-	"arch-chroot /mnt /usr/bin/zsh &",
-	"pacman -S grub os-prober",
-	"grub-install --recheck /dev/sda",
-	"grub-mkconfig -o /boot/grub/grub.cfg",
-	"time.sleep(60)",
-	"print \"\033[40;1;31m Lets Configure Base Setting\033[0m\""
-	], shell=True)
-
+def configure_grub():
+	call("pacman -S grub", shell=True)
+	call("arch-chroot /mnt grub-install --target=i386-pc --debug /dev/sda", shell=True)
+	call("arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
+	print "\033[1;32m#####Grub Installed Successfully#############\033[0m"
+	
 print ""
 
 # install and configure GRAND UNIFIED BOOTLOADER
-download_grub = call("pacman -S grub os-prober", shell=True)
-grub_install  = call("grub-install --recheck /dev/sda", shell=True)
-grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
 #download_grub = call("pacman -S grub os-prober", shell=True)
 #grub_install  = call("grub-install --recheck /dev/sda", shell=True)
 #grub_config = call("grub-mkconfig -o /boot/grub/grub.cfg", shell=True)
