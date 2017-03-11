@@ -1,4 +1,5 @@
-https://github.com/marvelhoax/instarch/blob/master/Instarch.png?raw=true
+![instarch](https://cloud.githubusercontent.com/assets/26195765/23822812/70ae20c0-067a-11e7-8c16-239e2bc2f6b3.png)
+
 # Instarch
 Download and run to install Arch Linux within seconds.
 
