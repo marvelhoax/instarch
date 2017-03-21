@@ -5,7 +5,18 @@
 from subprocess import *
 import time
 
-print "\033[1;32m---------W3lC0M3 T0 INST4RCH---------------\033[0m"
+print """\033[1;32m
+	/$$$$$$                       /$$      /$$$$$$                      /$$      
+	|_  $$_/                      | $$     /$$__  $$                    | $$      
+	  | $$   /$$$$$$$   /$$$$$$$ /$$$$$$  | $$  \ $$  /$$$$$$   /$$$$$$$| $$$$$$$ 
+	  | $$  | $$__  $$ /$$_____/|_  $$_/  | $$$$$$$$ /$$__  $$ /$$_____/| $$__  $$
+	  | $$  | $$  \ $$|  $$$$$$   | $$    | $$__  $$| $$  \__/| $$      | $$  \ $$
+	  | $$  | $$  | $$ \____  $$  | $$ /$$| $$  | $$| $$      | $$      | $$  | $$
+	 /$$$$$$| $$  | $$ /$$$$$$$/  |  $$$$/| $$  | $$| $$      |  $$$$$$$| $$  | $$
+	|______/|__/  |__/|_______/    \___/  |__/  |__/|__/       \_______/|__/  |__/
+                                                                              
+                                                                              
+                                                                              \033[0m"""
 
 time.sleep(5)
 
@@ -69,10 +80,9 @@ user_passwd = call("arch-chroot /mnt "+user_pass, shell=True)
 # edit sudoers to allow new user to sudo
 file_sudoers = open("visudo", "w+")
 uncomment = file_sudoers.readline()
-	if uncomment == "#%wheel ALL=(ALL) ALL":
-		uncomment.replace("#%wheel", " %whell")
-
-	file_sudoers.close()
+if uncomment == "#%wheel ALL=(ALL) ALL":
+	uncomment.replace("#%wheel", " %whell")
+file_sudoers.close()
 
 # check the name of your network interface
 interface = call("ip link", shell=True)
