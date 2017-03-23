@@ -78,11 +78,16 @@ user_pass = "passwd ", get_username
 user_passwd = call("arch-chroot /mnt "+user_pass, shell=True)
 	
 # edit sudoers to allow new user to sudo
-file_sudoers = open("visudo", "w+")
-uncomment = file_sudoers.readline()
-if uncomment == "#%wheel ALL=(ALL) ALL":
-	uncomment.replace("#%wheel", " %whell")
-file_sudoers.close()
+sudoers = call("arch-chroot /mnt cd /etc/");
+open_sudoers = open("sudoers", "a")
+write = get_username, " ALL=(ALL) ALL"
+open_sudoers.append(write)
+open_sudoers.close()
+#file_sudoers = open("visudo", "w+")
+#uncomment = file_sudoers.readline()
+#if uncomment == "#%wheel ALL=(ALL) ALL":
+	#uncomment.replace("#%wheel", " %whell")
+#file_sudoers.close()
 
 # check the name of your network interface
 interface = call("ip link", shell=True)
