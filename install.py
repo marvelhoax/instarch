@@ -68,14 +68,15 @@ passwd = call("passwd", shell=True)
 
 # set hostname
 enter_hostname = raw_input("\033[32mEnter the hostname for your ARCH\033[0m")
-conf_hostname = "echo ", enter_hostname, " > /etc/hostname"
-hostname = call("arch-chroot /mnt "+conf_hostname, shell=True)
+conf_hostname = "arch-chroot /mnt echo ", enter_hostname, " > /etc/hostname"
+hostname = call(conf_hostname, shell=True)
 
 # add new user & set password
 get_username = raw_input( "\033[31m Lets add new user & set password\033[0m")
-set_username = "useradd -m -G whell ",get_username
-user_pass = "passwd ", get_username
-user_passwd = call("arch-chroot /mnt "+user_pass, shell=True)
+set_username = "useradd "+ get_username
+username = call(set_username, shell=True)
+user_pass = "arch-chroot /mnt passwd "+ get_username
+user_passwd = call(user_pass, shell=True)
 	
 # edit sudoers to allow new user to sudo
 sudoers = call("arch-chroot /mnt cd /etc/");
