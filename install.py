@@ -29,6 +29,10 @@ build_filesystem = call("mkfs.ext4 /dev/sda1", shell=True)
 # Mount the new partition
 mount = call("mount /dev/sda1 /mnt", shell=True)
 
+# update pacman and install keyring
+call("pacman -Syu",shell=True)
+call("pacman -S archlinux-keyring")
+
 # install the base system
 base_sys = call("pacstrap /mnt base base-devel", shell=True)
 
@@ -79,7 +83,7 @@ user_pass = "arch-chroot /mnt passwd "+ get_username
 user_passwd = call(user_pass, shell=True)
 
 # Add user to wheel group
-add_wheel_group = "arch-chroot /mnt gpasswd -a "+get_username+"wheel"
+add_wheel_group = "arch-chroot /mnt gpasswd -a "+get_username+" wheel"
 wheeel_grp = call(add_wheel_group, shell=True)
 # edit sudoers to allow new user to sudo
 #sudoers = call("arch-chroot /mnt cd /etc/");
