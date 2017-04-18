@@ -130,7 +130,7 @@ time.sleep(5)
 
 print "\033[36m Installing Desktop Environment\033[0m"
 
-print "1.AMD\n 2. INTEL\n 3.  Nvdia"
+print "1. AMD\n2. INTEL\n3. Nvdia"
 video_hardware = raw_input("select the Brand for video driver")
 
 if video_hardware == "1":
