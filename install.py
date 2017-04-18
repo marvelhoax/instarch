@@ -73,7 +73,7 @@ hostname = call(conf_hostname, shell=True)
 
 # add new user & set password
 get_username = raw_input( "\033[31m Lets add new user & set password\033[0m")
-set_username = "useradd "+ get_username
+set_username = "arch-chroot /mnt useradd "+ get_username
 username = call(set_username, shell=True)
 user_pass = "arch-chroot /mnt passwd "+ get_username
 user_passwd = call(user_pass, shell=True)
@@ -127,24 +127,24 @@ time.sleep(5)
 print "\033[36m Installing Desktop Environment\033[0m"
 
 print "1.AMD\n 2. INTEL\n 3.  Nvdia"
-Video_hardware = raw_input("select the Brand for video driver")
+video_hardware = raw_input("select the Brand for video driver")
 
 if video_hardware == "1":
 	# install the default video driver
 	default_driver = call("arch-chroot /mnt pacman -S xf86-video-amdgpu", shell=True)
-	if default-driver == "0":
+	if default_driver == "0":
 		print "Video Driver installed successfully"
 	else :
 		print "Error in installing Video Driver. Try Again"
 elif video_hardware == "2":
 	default_driver = call("arch-chroot /mnt pacman -S xf86-video-intel", shell=True)
-	if default-driver == "0":
+	if default_driver == "0":
 		print "Video Driver installed successfully"
 	else :
 		print "Error in installing Video Driver. Try Again"
 elif video_hardware == "3":
 	default_hardware = call("arch-chroot /mnt pacman -S xf86-video-nouveau", shell=True)
-	if default-driver == "0":
+	if default_driver == "0":
 		print "Video Driver installed successfully"
 	else :
 		print "Error in installing Video Driver. Try Again"
@@ -170,7 +170,7 @@ print ""
 
 # installing Desktop Environment of your choice
 print "Choose the Desktop Environment to Install for Your Arch"
-print "1. Gnome\n 2. KDE\n 3. Xfce4\n 4. Lxde\n  5. Cinnamon\n 6. MATE\n 7. LXQt"
+print "1. Gnome\n2. KDE\n3. Xfce4\n4. Lxde\n5. Cinnamon\n6. MATE\n7. LXQt"
 desktop = raw_input("Enter the number of desktop environment? ")
 if desktop == "1":
 	install_de = call("arch-chroot /mnt pacman -S gnome gnome-extra", shell=True)
@@ -219,9 +219,10 @@ else :
 
 # install & enable login manager lightdm
 install_lightdm = call("arch-chroot /mnt pacman -S lightdm-gtk-greeter", shell=True)
-start_lightdm = call("arch-chroot /mnt systemctl enable lightdm.service", shell=True)
+enable_lightdm = call("arch-chroot /mnt systemctl enable lightdm.service", shell=True)
+start_lightdm = call("arch-chroot /mnt systemctl start lightdm.service",shell=True)
 
 ############### DESKTOP ENVIROMENT INSTALLED #################
 
-
+print "\n\n\n\n"
 print "Volla! Arch is ready for customization. Just type reboot and start using Arch Linux"
