@@ -82,9 +82,14 @@ username = call(set_username, shell=True)
 user_pass = "arch-chroot /mnt passwd "+ get_username
 user_passwd = call(user_pass, shell=True)
 
+
+# Adding user to sudoers file
+addUser = "arch-chroot /mnt echo "+get_username+" ALL=(ALL:ALL) ALL >> /etc/sudoers"
+Sudo = call(addUser, shell=True)
+
 # Add user to wheel group
-add_wheel_group = "arch-chroot /mnt gpasswd -a "+get_username+" wheel"
-wheeel_grp = call(add_wheel_group, shell=True)
+#add_wheel_group = "arch-chroot /mnt gpasswd -a "+get_username+" wheel"
+#wheeel_grp = call(add_wheel_group, shell=True)
 # edit sudoers to allow new user to sudo
 #sudoers = call("arch-chroot /mnt cd /etc/");
 #open_sudoers = open("sudoers", "a")
