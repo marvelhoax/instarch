@@ -84,14 +84,14 @@ hostname = call(conf_hostname, shell=True)
 
 # add new user & set password
 get_username = raw_input( "\033[31m Lets add new user & set password\033[0m")
-set_username = "arch-chroot /mnt useradd "+ get_username
+set_username = "arch-chroot /mnt useradd", get_username
 username = call(set_username, shell=True)
-user_pass = "arch-chroot /mnt passwd "+ get_username
+user_pass = "arch-chroot /mnt passwd", get_username
 user_passwd = call(user_pass, shell=True)
 
 
 # Adding user to sudoers file
-addUser = "arch-chroot /mnt echo "+get_username+" ALL=(ALL:ALL) ALL >> /etc/sudoers"
+addUser = "arch-chroot /mnt echo ",get_username," ALL=(ALL:ALL) ALL >> /etc/sudoers"
 Sudo = call(addUser, shell=True)
 
 # Add user to wheel group
