@@ -3,7 +3,7 @@
 # All contribution and suggestions are welcome
 
 from subprocess import *
-import time
+import time, psutil, re
 
 print """\033[1;32m
 	/$$$$$$                       /$$      /$$$$$$                      /$$      
@@ -21,17 +21,24 @@ print """\033[1;32m
 time.sleep(5)
 
 # Create a single partition and mark it bootable
-create_partition = call("cfdisk /dev/sda", shell=True)
+create_partition = call("cfdisk", shell=True)
+
+# CHECKING ALL THE DISK PARTITIONS MADE BY THE USER
+disk = psutil.disk_partitions()
+
+for partition in disk:
+    name = re.search('\/dev\/[a-z0-9]+',str(partition))
+    call("mkfs.ext4"+name.group(), shell=True)
 
 # Build ext4 filesystem on it
-build_filesystem = call("mkfs.ext4 /dev/sda1", shell=True)
+#build_filesystem = call("mkfs.ext4 /dev/sda1", shell=True)
 
 # Mount the new partition
 mount = call("mount /dev/sda1 /mnt", shell=True)
 
 # update pacman and install keyring
-call("pacman -Syu",shell=True)
-call("pacman -S archlinux-keyring")
+call("pacman-key --init",shell=True)
+call("pacman-key --populate archlinux",shell=True)
 
 # install the base system
 base_sys = call("pacstrap /mnt base base-devel", shell=True)
